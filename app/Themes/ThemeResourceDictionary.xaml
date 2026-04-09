@@ -7,11 +7,24 @@
         <GradientStop Color="{StaticResource CopperMidColor}" Offset="1.00" />
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="RightPanelOuterBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#211A16" Offset="0.0" />
+        <GradientStop Color="#15110F" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RightPanelCapsuleBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#1F1814" Offset="0.0" />
+        <GradientStop Color="#1B1613" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="WarmTintBrush" Color="#0DFF8A1F" />
+
     <Style x:Key="CardBorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="{StaticResource RightCardBrush}" />
+        <Setter Property="Background" Value="{StaticResource RightPanelOuterBrush}" />
         <Setter Property="Padding" Value="16" />
         <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource RightCardBorderBrush}" />
     </Style>
 
     <Style x:Key="WindowButtonStyle" TargetType="Button">

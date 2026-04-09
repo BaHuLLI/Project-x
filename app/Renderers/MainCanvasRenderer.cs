@@ -43,6 +43,7 @@ public sealed class MainCanvasRenderer : Border, IDisposable
 
     private readonly SKPaint _backgroundPaint = NewPaint();
     private readonly SKPaint _atmospherePaint = NewPaint();
+    private readonly SKPaint _globalWarmOverlayPaint = NewPaint(new SKColor(255, 138, 31, 12));
     private readonly SKPaint _leftAtmospherePaint = NewPaint(new SKColor(255, 179, 71, 5));
     private readonly SKPaint _rightAtmospherePaint = NewPaint(new SKColor(255, 138, 31, 6));
     private readonly SKPaint _rearShadowPaint = NewPaint(new SKColor(5, 5, 5, 150));
@@ -51,11 +52,13 @@ public sealed class MainCanvasRenderer : Border, IDisposable
     private readonly SKPaint _floorBloomPaint = NewPaint();
     private readonly SKPaint _deviceBodyPaint = NewPaint();
     private readonly SKPaint _deviceShellPaint = NewPaint();
+    private readonly SKPaint _deviceHighlightPaint = NewPaint();
     private readonly SKPaint _fasciaPaint = NewPaint();
     private readonly SKPaint _clearCoatPaint = NewPaint();
     private readonly SKPaint _edgeHighlightPaint = NewStrokePaint(new SKColor(106, 82, 68, 110), 0.9f);
     private readonly SKPaint _accentEdgePaint = NewStrokePaint(new SKColor(255, 179, 71, 64), 1f);
     private readonly SKPaint _rimLightPaint = NewStrokePaint(new SKColor(255, 179, 71, 82), 2.2f);
+    private readonly SKPaint _lowerRimGlowPaint = NewStrokePaint(new SKColor(255, 106, 0, 64), 2.8f);
     private readonly SKPaint _lensOverlayPaint = NewPaint();
     private readonly SKPaint _lensEdgePaint = NewStrokePaint(new SKColor(243, 232, 220, 18), 1f);
     private readonly SKPaint _recessPaint = NewPaint(new SKColor(20, 17, 16, 225));
@@ -105,6 +108,7 @@ public sealed class MainCanvasRenderer : Border, IDisposable
     private SKShader? _floorBloomShader;
     private SKShader? _deviceBodyShader;
     private SKShader? _deviceShellShader;
+    private SKShader? _deviceHighlightShader;
     private SKShader? _fasciaShader;
     private SKShader? _clearCoatShader;
     private SKShader? _lensOverlayShader;
@@ -143,7 +147,10 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         _rearShadowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 42f);
         _contactShadowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 28f);
         _reflectionPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 18f);
+        _floorBloomPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 28f);
+        _globalWarmOverlayPaint.BlendMode = SKBlendMode.SoftLight;
         _activeArcGlowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 18f);
+        _lowerRimGlowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 14f);
         _ledGlowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 10f);
         _hotspotGlowPaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 18f);
         _hotspotCorePaint.MaskFilter = SKMaskFilter.CreateBlur(SKBlurStyle.Normal, 8f);
@@ -185,17 +192,20 @@ public sealed class MainCanvasRenderer : Border, IDisposable
 
         _backgroundPaint.Dispose();
         _atmospherePaint.Dispose();
+        _globalWarmOverlayPaint.Dispose();
         _rearShadowPaint.Dispose();
         _contactShadowPaint.Dispose();
         _reflectionPaint.Dispose();
         _floorBloomPaint.Dispose();
         _deviceBodyPaint.Dispose();
         _deviceShellPaint.Dispose();
+        _deviceHighlightPaint.Dispose();
         _fasciaPaint.Dispose();
         _clearCoatPaint.Dispose();
         _edgeHighlightPaint.Dispose();
         _accentEdgePaint.Dispose();
         _rimLightPaint.Dispose();
+        _lowerRimGlowPaint.Dispose();
         _lensOverlayPaint.Dispose();
         _lensEdgePaint.Dispose();
         _recessPaint.Dispose();
@@ -271,6 +281,7 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         DrawDisplayInterior(canvas);
         DrawLensLayer(canvas);
         DrawHardwareDetails(canvas);
+        DrawGlobalWarmOverlay(canvas, (int)BaseSceneWidth, (int)BaseSceneHeight);
         canvas.Restore();
     }
 
@@ -408,9 +419,19 @@ public sealed class MainCanvasRenderer : Border, IDisposable
 #pragma warning disable CA1861
         _backgroundShader = SKShader.CreateLinearGradient(new SKPoint(0, 0), new SKPoint(0, height), new[] { new SKColor(10, 9, 8), new SKColor(16, 13, 11), new SKColor(22, 17, 13) }, new[] { 0f, 0.54f, 1f }, SKShaderTileMode.Clamp);
         _backgroundPaint.Shader = _backgroundShader;
-        _atmosphereShader = SKShader.CreateRadialGradient(new SKPoint(width * 0.77f, height * 0.13f), MathF.Max(width, height) * 0.44f, new[] { new SKColor(255, 179, 71, 34), new SKColor(255, 138, 31, 18), new SKColor(217, 78, 0, 0) }, new[] { 0f, 0.40f, 1f }, SKShaderTileMode.Clamp);
+        _atmosphereShader = SKShader.CreateRadialGradient(
+            new SKPoint(width * 0.60f, height * 0.12f),
+            MathF.Min(MathF.Max(width, height) * 0.70f, 860f),
+            new[] { new SKColor(255, 138, 31, 38), new SKColor(255, 106, 0, 20), new SKColor(255, 106, 0, 0) },
+            new[] { 0f, 0.46f, 1f },
+            SKShaderTileMode.Clamp);
         _atmospherePaint.Shader = _atmosphereShader;
-        _floorBloomShader = SKShader.CreateRadialGradient(new SKPoint(width * 0.5f, _deviceTop + _deviceHeight + 92f), width * 0.26f, new[] { new SKColor(255, 138, 31, 76), new SKColor(163, 78, 26, 26), new SKColor(143, 78, 36, 0) }, new[] { 0f, 0.42f, 1f }, SKShaderTileMode.Clamp);
+        _floorBloomShader = SKShader.CreateRadialGradient(
+            new SKPoint(width * 0.5f, _deviceTop + _deviceHeight + 92f),
+            width * 0.34f,
+            new[] { new SKColor(255, 106, 0, 56), new SKColor(143, 78, 36, 31), new SKColor(143, 78, 36, 0) },
+            new[] { 0f, 0.48f, 1f },
+            SKShaderTileMode.Clamp);
         _floorBloomPaint.Shader = _floorBloomShader;
         _deviceBodyShader = SKShader.CreateLinearGradient(
             new SKPoint(_deviceLeft, _deviceTop),
@@ -422,10 +443,17 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         _deviceShellShader = SKShader.CreateLinearGradient(
             new SKPoint(_deviceLeft, _deviceTop + 30f),
             new SKPoint(_deviceLeft, _deviceTop + _deviceHeight),
-            new[] { new SKColor(106, 82, 68, 84), new SKColor(17, 18, 20, 0) },
+            new[] { new SKColor(106, 82, 68, 88), new SKColor(17, 18, 20, 0) },
             new[] { 0f, 1f },
             SKShaderTileMode.Clamp);
         _deviceShellPaint.Shader = _deviceShellShader;
+        _deviceHighlightShader = SKShader.CreateLinearGradient(
+            new SKPoint(_deviceLeft + _deviceWidth * 0.56f, _deviceTop + 34f),
+            new SKPoint(_deviceLeft + _deviceWidth, _deviceTop + _deviceHeight * 0.86f),
+            new[] { new SKColor(255, 138, 31, 0), new SKColor(255, 138, 31, 22), new SKColor(255, 179, 71, 34) },
+            new[] { 0f, 0.58f, 1f },
+            SKShaderTileMode.Clamp);
+        _deviceHighlightPaint.Shader = _deviceHighlightShader;
         _fasciaShader = SKShader.CreateLinearGradient(new SKPoint(_deviceLeft, _deviceTop + _deviceHeight), new SKPoint(_deviceLeft + _deviceWidth, _deviceTop + _deviceHeight), new[] { new SKColor(26, 22, 20), new SKColor(42, 34, 29), new SKColor(26, 22, 20) }, new[] { 0f, 0.5f, 1f }, SKShaderTileMode.Clamp);
         _fasciaPaint.Shader = _fasciaShader;
         _clearCoatShader = SKShader.CreateLinearGradient(new SKPoint(0, _deviceTop + _deviceHeight - 20f), new SKPoint(0, _deviceTop + _deviceHeight + 8f), new[] { new SKColor(243, 232, 220, 16), new SKColor(243, 232, 220, 0) }, new[] { 0f, 1f }, SKShaderTileMode.Clamp);
@@ -433,7 +461,7 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         _displayDepthShader = SKShader.CreateRadialGradient(
             new SKPoint(_displayRect.MidX, _displayRect.MidY),
             _displayRect.Width * 0.65f,
-            new[] { new SKColor(6, 6, 7), new SKColor(10, 11, 13), new SKColor(10, 11, 13) },
+            new[] { new SKColor(6, 6, 7), new SKColor(10, 9, 8), new SKColor(16, 13, 11) },
             new[] { 0f, 0.58f, 1f },
             SKShaderTileMode.Clamp);
         _displayDepthPaint.Shader = _displayDepthShader;
@@ -456,8 +484,8 @@ public sealed class MainCanvasRenderer : Border, IDisposable
     {
         canvas.DrawRect(new SKRect(0, 0, width, height), _backgroundPaint);
         canvas.DrawRect(new SKRect(0, 0, width, height), _atmospherePaint);
-        canvas.DrawRoundRect(new SKRoundRect(new SKRect(_deviceLeft - 104f, _deviceTop - 34f, _deviceLeft - 10f, _deviceTop + _deviceHeight + 50f), 26f, 26f), _leftAtmospherePaint);
-        canvas.DrawRoundRect(new SKRoundRect(new SKRect(_deviceLeft + _deviceWidth + 14f, _deviceTop - 18f, _deviceLeft + _deviceWidth + 112f, _deviceTop + _deviceHeight + 38f), 24f, 24f), _rightAtmospherePaint);
+        canvas.DrawRoundRect(new SKRoundRect(new SKRect(_deviceLeft - 104f, _deviceTop - 20f, _deviceLeft - 10f, _deviceTop + _deviceHeight + 50f), 26f, 26f), _leftAtmospherePaint);
+        canvas.DrawRoundRect(new SKRoundRect(new SKRect(_deviceLeft + _deviceWidth + 14f, _deviceTop - 24f, _deviceLeft + _deviceWidth + 112f, _deviceTop + _deviceHeight + 38f), 24f, 24f), _rightAtmospherePaint);
     }
 
     private void DrawFloorSystem(SKCanvas canvas)
@@ -466,7 +494,7 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         var floorY = _deviceTop + _deviceHeight + 58f;
         canvas.DrawOval(new SKRect(floorCenterX - _deviceWidth * 0.38f, floorY - 38f, floorCenterX + _deviceWidth * 0.38f, floorY + 34f), _contactShadowPaint);
         canvas.DrawOval(new SKRect(floorCenterX - _deviceWidth * 0.26f, floorY - 12f, floorCenterX + _deviceWidth * 0.26f, floorY + 24f), _reflectionPaint);
-        canvas.DrawOval(new SKRect(floorCenterX - _deviceWidth * 0.25f, floorY - 2f, floorCenterX + _deviceWidth * 0.25f, floorY + 42f), _floorBloomPaint);
+        canvas.DrawOval(new SKRect(floorCenterX - _deviceWidth * 0.30f, floorY - 8f, floorCenterX + _deviceWidth * 0.30f, floorY + 54f), _floorBloomPaint);
     }
 
     private void DrawDeviceShadow(SKCanvas canvas)
@@ -478,13 +506,16 @@ public sealed class MainCanvasRenderer : Border, IDisposable
     {
         canvas.DrawPath(_deviceOuterPath, _deviceBodyPaint);
         canvas.DrawPath(_deviceOuterPath, _deviceShellPaint);
+        canvas.DrawPath(_deviceOuterPath, _deviceHighlightPaint);
         canvas.DrawPath(_deviceOuterPath, _edgeHighlightPaint);
         canvas.DrawPath(_deviceOuterPath, _accentEdgePaint);
         canvas.DrawPath(_deviceInnerPath, _deviceShellPaint);
+        canvas.DrawPath(_deviceInnerPath, _deviceHighlightPaint);
         canvas.DrawPath(_deviceInnerPath, _edgeHighlightPaint);
         canvas.DrawPath(_fasciaPath, _fasciaPaint);
         canvas.DrawPath(_fasciaPath, _clearCoatPaint);
         canvas.DrawPath(_rimLightPath, _rimLightPaint);
+        canvas.DrawPath(_rimLightPath, _lowerRimGlowPaint);
 
         var lineLeft = _deviceLeft + 22f;
         var lineRight = _deviceLeft + _deviceWidth - 22f;
@@ -733,6 +764,11 @@ public sealed class MainCanvasRenderer : Border, IDisposable
         _logoPaint.TextSize = 18f;
         _logoPaint.TextAlign = SKTextAlign.Center;
         canvas.DrawText("PROJECT-X", _fasciaPath.Bounds.MidX, _fasciaPath.Bounds.MidY + 6f, _logoPaint);
+    }
+
+    private void DrawGlobalWarmOverlay(SKCanvas canvas, int width, int height)
+    {
+        canvas.DrawRect(new SKRect(0, 0, width, height), _globalWarmOverlayPaint);
     }
 
     private void DrawStat(SKCanvas canvas, string label, string value, string unit, float x, float y, float uiScale)

@@ -2,22 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="BackgroundDeepColor">#070708</Color>
     <Color x:Key="BackgroundBaseColor">#0B0B0C</Color>
-    <Color x:Key="PanelDarkColor">#101113</Color>
-    <Color x:Key="PanelMidColor">#141518</Color>
-    <Color x:Key="SurfaceColor">#15161A</Color>
-    <Color x:Key="SurfaceLightColor">#1A1B20</Color>
-    <Color x:Key="SurfaceHighlightColor">#202228</Color>
+    <Color x:Key="PanelDarkColor">#100D0B</Color>
+    <Color x:Key="PanelMidColor">#15110F</Color>
+    <Color x:Key="SurfaceColor">#171310</Color>
+    <Color x:Key="SurfaceLightColor">#1D1713</Color>
+    <Color x:Key="SurfaceHighlightColor">#241C17</Color>
     <Color x:Key="SurfacePanelColor">#211A16</Color>
 
-    <Color x:Key="MetalShadowColor">#111214</Color>
-    <Color x:Key="MetalBaseColor">#23262B</Color>
-    <Color x:Key="MetalMidColor">#3A3E46</Color>
-    <Color x:Key="MetalEdgeColor">#555B66</Color>
+    <Color x:Key="MetalShadowColor">#14110F</Color>
+    <Color x:Key="MetalBaseColor">#2A221D</Color>
+    <Color x:Key="MetalMidColor">#3A2D25</Color>
+    <Color x:Key="MetalEdgeColor">#6A5244</Color>
 
     <Color x:Key="TextPrimaryColor">#F2EEE8</Color>
     <Color x:Key="TextSecondaryColor">#C7C2BA</Color>
-    <Color x:Key="TextMutedColor">#8D919A</Color>
-    <Color x:Key="TextDisabledColor">#6B707A</Color>
+    <Color x:Key="TextMutedColor">#A5988B</Color>
+    <Color x:Key="TextDisabledColor">#786E65</Color>
 
     <Color x:Key="CopperDarkColor">#A34E1A</Color>
     <Color x:Key="CopperMidColor">#D94E00</Color>
@@ -39,8 +39,8 @@
     <Color x:Key="SecondaryButtonColor">#1A1512</Color>
     <Color x:Key="SecondaryButtonHoverColor">#241C17</Color>
     <Color x:Key="SecondaryButtonBorderColor">#32261F</Color>
-    <Color x:Key="RightCardColor">#171310</Color>
-    <Color x:Key="RightCardInnerColor">#211A16</Color>
+    <Color x:Key="RightCardColor">#1B1613</Color>
+    <Color x:Key="RightCardInnerColor">#1B1613</Color>
     <Color x:Key="RightCardBorderColor">#2E241D</Color>
     <Color x:Key="RightCardSecondaryTextColor">#BBA692</Color>
 
