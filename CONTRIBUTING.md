@@ -1,30 +1,32 @@
 # Contributing
 
-## Базовые правила
+## Базовый процесс
 
-- Работать только через feature-ветки.
-- Не пушить напрямую в `main`.
-- Merge в `main` выполнять только через Pull Request.
-- Merge допускается только после успешного CI.
-- Изменения должны быть минимальными и локальными.
-- Массовый рефакторинг запрещен без отдельного запроса.
-- Публичные интерфейсы и архитектуру нельзя менять без отдельного согласования.
+- Работайте в отдельной ветке, а не в `main`.
+- Перед переносом изменений в `main` запускайте локальные проверки.
+- Держите изменения минимальными и локальными.
+- Не меняйте публичные интерфейсы и архитектуру без отдельного согласования.
 
-## Минимальный набор локальных проверок
+## Локальные проверки
 
 ```powershell
-dotnet restore .\Dashbord.sln
-dotnet format .\Dashbord.sln whitespace --verify-no-changes --no-restore
-dotnet format .\Dashbord.sln style --verify-no-changes --no-restore
-dotnet format .\Dashbord.sln analyzers --verify-no-changes --no-restore
-dotnet build .\Dashbord.sln -c Release --no-restore
-dotnet test .\tests\ProjectXProDash.UnitTests\ProjectXProDash.UnitTests.csproj -c Release --no-build
-dotnet test .\tests\ProjectXProDash.SmokeTests\ProjectXProDash.SmokeTests.csproj -c Release --no-build
+powershell -ExecutionPolicy Bypass -File .\scripts\local-check.ps1
 ```
 
-## Перед открытием PR
+## Рекомендуемый поток
 
-- Обновить или добавить тесты на затронутый критичный функционал.
-- Описать, что изменено и что потенциально может сломаться.
-- Отдельно отметить любые изменения контрактов, если на них было получено согласование.
+```powershell
+git checkout main
+git pull
+git checkout -b feature/my-change
 
+# ...изменения...
+
+powershell -ExecutionPolicy Bypass -File .\scripts\local-check.ps1
+
+git add .
+git commit -m "your message"
+git checkout main
+git merge feature/my-change
+git push origin main
+```
