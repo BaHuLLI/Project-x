@@ -1,0 +1,28 @@
+bin/
+obj/
+.vs/
+.vscode/
+.idea/
+TestResults/
+artifacts/
+coverage/
+
+*.user
+*.rsuser
+*.suo
+*.userprefs
+*.nupkg
+*.snupkg
+*.cache
+*.log
+
+.DS_Store
+Thumbs.db
+
+# Workspace-local artifacts outside the active solution scope
+Project-x/
+Project-X-SimHub-Plugin/
+app — блок 1 база/
+photo_2026-04-09_01-21-57.jpg
+ТЗ.txt
+цель и план.txt

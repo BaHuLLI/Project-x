@@ -1,0 +1,65 @@
+<UserControl x:Class="ProjectXProDash.Views.ThemesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:ProjectXProDash.Models">
+    <ItemsControl ItemsSource="{Binding Themes}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type models:ThemeConfig}">
+                <Button Margin="0,0,0,16"
+                        Padding="0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding DataContext.SelectThemeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        CommandParameter="{Binding}">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="ThemeCard"
+                                    Padding="16"
+                                    Background="{StaticResource SurfaceBrush}"
+                                    BorderThickness="0"
+                                    CornerRadius="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Width="42"
+                                            Height="42"
+                                            Background="{Binding AccentHex}"
+                                            BorderThickness="0"
+                                            CornerRadius="10" />
+
+                                    <StackPanel Grid.Column="1" Margin="16,0,0,0">
+                                        <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{Binding Name}" />
+                                        <TextBlock Margin="0,6,0,0"
+                                                   Style="{StaticResource LabelTextStyle}"
+                                                   Text="{Binding Description}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Column="2"
+                                               VerticalAlignment="Center"
+                                               Foreground="{StaticResource AccentBrush}"
+                                               FontFamily="{DynamicResource UiFontFamily}"
+                                               FontSize="10"
+                                               FontWeight="SemiBold"
+                                               Text="APPLY" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ThemeCard" Property="Background" Value="#CC23262B" />
+                                </Trigger>
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="ThemeCard" Property="Background" Value="#CC261A12" />
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>
