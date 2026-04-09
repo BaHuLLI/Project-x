@@ -4,9 +4,14 @@
 
 - Do not work directly in `main`.
 - Start every task from a new branch created from `main`.
+- Always keep changes in the new branch until the user explicitly says to push or merge into `main`.
+- Never push directly to `main` on your own.
+- Never merge into `main` on your own.
+- Only the user decides whether changes should go to `main`.
 - Keep changes minimal and local.
 - Do not change public interfaces or architecture without explicit approval.
 - Do not do mass refactors unless explicitly requested.
+- If the task changes workflow, project context, setup instructions, or usage guidance, update the relevant repository docs as part of the same change.
 
 ## Required Local Validation
 
@@ -60,4 +65,5 @@ After finishing work, report:
 - what changed
 - whether local checks passed
 - any risk or follow-up the user should know about
+- whether any repository instruction or context files were updated
 

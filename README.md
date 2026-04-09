@@ -53,4 +53,5 @@ git push origin main
 ## Полезные файлы
 
 - [AI_WORKFLOW.md](L:/Dashbord/AI_WORKFLOW.md) — короткая инструкция для ИИ и рабочего процесса
+- [AI_PROMPTS.md](L:/Dashbord/AI_PROMPTS.md) — готовые шаблоны промптов под разные типы задач
 - [PROJECT_CONTEXT.md](L:/Dashbord/PROJECT_CONTEXT.md) — краткий контекст проекта и MVP-границы
