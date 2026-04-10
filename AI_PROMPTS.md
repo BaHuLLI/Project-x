@@ -8,6 +8,11 @@
 - `PROJECT_CONTEXT.md`
 - `README.md`
 
+Additional mandatory runtime rule:
+
+- after successful local validation, always close any running old `ProjectXProDash` process
+- then launch the current app using `cmd /c .\app\build-and-run.bat`
+
 ## Universal
 
 ```text

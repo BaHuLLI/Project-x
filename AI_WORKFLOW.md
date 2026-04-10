@@ -21,6 +21,13 @@ Run this after code changes:
 powershell -ExecutionPolicy Bypass -File .\scripts\local-check.ps1
 ```
 
+After successful validation, always close any already running old app instance and start the current build with:
+
+```powershell
+Stop-Process -Name ProjectXProDash -Force -ErrorAction SilentlyContinue
+cmd /c .\app\build-and-run.bat
+```
+
 If validation fails:
 
 - fix the issue first
@@ -44,6 +51,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\local-check.ps1
 If checks pass:
 
 ```powershell
+Stop-Process -Name ProjectXProDash -Force -ErrorAction SilentlyContinue
+cmd /c .\app\build-and-run.bat
+```
+
+Then:
+
+```powershell
 git add .
 git commit -m "your message"
 ```
@@ -64,6 +78,7 @@ After finishing work, report:
 
 - what changed
 - whether local checks passed
+- whether the old app instance was closed and `app\build-and-run.bat` was launched
 - any risk or follow-up the user should know about
 - whether any repository instruction or context files were updated
 
