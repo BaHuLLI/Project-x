@@ -6,8 +6,8 @@
         Title="Project-X Pro Dash"
         Width="1440"
         Height="860"
-        MinWidth="1000"
-        MinHeight="600"
+        MinWidth="1200"
+        MinHeight="760"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -23,34 +23,80 @@
     </shell:WindowChrome.WindowChrome>
 
     <Window.Resources>
-        <RadialGradientBrush x:Key="WindowCoreGlowBrush"
-                             Center="0.5,0.46"
-                             GradientOrigin="0.5,0.46"
-                             RadiusX="0.65"
-                             RadiusY="0.65">
-            <GradientStop Color="#2EFF7800" Offset="0" />
-            <GradientStop Color="#18FF7800" Offset="0.28" />
-            <GradientStop Color="#00FF7800" Offset="1" />
+        <LinearGradientBrush x:Key="ShellBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#090C12" Offset="0" />
+            <GradientStop Color="#070A10" Offset="0.55" />
+            <GradientStop Color="#06080D" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ShellChromeBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#1A1F29" Offset="0" />
+            <GradientStop Color="#12171F" Offset="0.52" />
+            <GradientStop Color="#0D1118" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="SidebarBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#141922" Offset="0" />
+            <GradientStop Color="#0E1218" Offset="0.55" />
+            <GradientStop Color="#0A0E14" Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="PanelBrushLocal" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#10151D" Offset="0" />
+            <GradientStop Color="#0B1017" Offset="1" />
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="AccentBrush" Color="#F09A3F" />
+        <SolidColorBrush x:Key="AccentStrongBrush" Color="#66F09A3F" />
+        <SolidColorBrush x:Key="TextMainBrush" Color="#F2F4F7" />
+        <SolidColorBrush x:Key="TextMutedBrush" Color="#8E96A3" />
+
+        <BitmapImage x:Key="DashboardFrameSource"
+                     UriSource="pack://siteoforigin:,,,/Assets/border.png"
+                     CacheOption="OnLoad" />
+
+        <CroppedBitmap x:Key="DashboardFrameBitmap"
+                       Source="{StaticResource DashboardFrameSource}"
+                       SourceRect="77,249,870,494" />
+
+        <RadialGradientBrush x:Key="CenterWarmGlowBrush"
+                             Center="0.5,0.52"
+                             GradientOrigin="0.5,0.52"
+                             RadiusX="0.52"
+                             RadiusY="0.42">
+            <GradientStop Color="#3AF09A3F" Offset="0" />
+            <GradientStop Color="#12F09A3F" Offset="0.48" />
+            <GradientStop Color="#00F09A3F" Offset="1" />
         </RadialGradientBrush>
 
-        <DrawingBrush x:Key="WindowNoiseBrush"
+        <RadialGradientBrush x:Key="TopHeatGlowBrush"
+                             Center="0.5,0"
+                             GradientOrigin="0.5,0"
+                             RadiusX="0.78"
+                             RadiusY="0.28">
+            <GradientStop Color="#30F09A3F" Offset="0" />
+            <GradientStop Color="#00F09A3F" Offset="1" />
+        </RadialGradientBrush>
+
+        <DrawingBrush x:Key="NoiseBrush"
                       Stretch="None"
                       TileMode="Tile"
-                      Viewbox="0,0,120,120"
+                      Viewbox="0,0,140,140"
                       ViewboxUnits="Absolute"
-                      Viewport="0,0,120,120"
-                      ViewportUnits="Absolute">
+                      Viewport="0,0,140,140"
+                      ViewportUnits="Absolute"
+                      Opacity="0.04">
             <DrawingBrush.Drawing>
                 <DrawingGroup>
                     <GeometryDrawing Brush="#FFFFFFFF">
                         <GeometryDrawing.Geometry>
                             <GeometryGroup>
-                                <EllipseGeometry Center="18,24" RadiusX="1" RadiusY="1" />
-                                <EllipseGeometry Center="52,78" RadiusX="1" RadiusY="1" />
+                                <EllipseGeometry Center="18,24" RadiusX="0.8" RadiusY="0.8" />
+                                <EllipseGeometry Center="52,78" RadiusX="0.8" RadiusY="0.8" />
                                 <EllipseGeometry Center="97,31" RadiusX="1" RadiusY="1" />
-                                <EllipseGeometry Center="84,102" RadiusX="1" RadiusY="1" />
-                                <EllipseGeometry Center="29,96" RadiusX="0.8" RadiusY="0.8" />
-                                <EllipseGeometry Center="110,67" RadiusX="0.8" RadiusY="0.8" />
+                                <EllipseGeometry Center="84,102" RadiusX="0.8" RadiusY="0.8" />
+                                <EllipseGeometry Center="29,96" RadiusX="0.6" RadiusY="0.6" />
+                                <EllipseGeometry Center="110,67" RadiusX="0.6" RadiusY="0.6" />
                             </GeometryGroup>
                         </GeometryDrawing.Geometry>
                     </GeometryDrawing>
@@ -58,53 +104,43 @@
             </DrawingBrush.Drawing>
         </DrawingBrush>
 
-        <RadialGradientBrush x:Key="WindowVignetteBrush"
-                             Center="0.5,0.5"
-                             GradientOrigin="0.5,0.5"
-                             RadiusX="0.88"
-                             RadiusY="0.88">
-            <GradientStop Color="#00000000" Offset="0.58" />
-            <GradientStop Color="#22000000" Offset="0.8" />
-            <GradientStop Color="#66000000" Offset="1" />
-        </RadialGradientBrush>
+        <DropShadowEffect x:Key="SoftAccentGlow"
+                          Color="#F09A3F"
+                          BlurRadius="14"
+                          ShadowDepth="0"
+                          Opacity="0.24" />
 
-        <SolidColorBrush x:Key="AccentBrush" Color="#FF8C00" />
-        <SolidColorBrush x:Key="SidebarButtonHoverBrush" Color="#1FE62E00" />
-        <SolidColorBrush x:Key="SidebarButtonActiveBrush" Color="#33E62E00" />
-        <SolidColorBrush x:Key="SidebarButtonAccentBorderBrush" Color="#4DE62E00" />
-        <Geometry x:Key="IconHome">F1 M 11,2 L 3,9 L 5,9 L 5,18 L 10,18 L 10,13 L 14,13 L 14,18 L 19,18 L 19,9 L 21,9 Z</Geometry>
-        <Geometry x:Key="IconSettings">F1 M 11,2 L 12.5,2.8 L 14.2,2.6 L 15,4.2 L 16.8,5 L 18.4,4.8 L 19,6.5 L 20,8 L 19.2,9.5 L 19.4,11.2 L 21,12 L 20.2,13.5 L 19.4,15.2 L 17.8,15 L 16.2,15.8 L 15.5,17.5 L 14,17.2 L 12.4,18 L 11,20 L 9.6,18 L 8,17.2 L 6.5,17.5 L 5.8,15.8 L 4.2,15 L 2.6,15.2 L 1.8,13.5 L 1,12 L 2.6,11.2 L 2.8,9.5 L 2,8 L 3,6.5 L 3.6,4.8 L 5.2,5 L 7,4.2 L 7.8,2.6 L 9.5,2.8 Z M 11,8 A 3,3 0 1 1 10.99,8 Z</Geometry>
-        <Geometry x:Key="IconPalette">F1 M 11,2 C 6,2 2,5.8 2,10.5 C 2,14.5 5.2,17.5 9.2,17.5 L 10.8,17.5 C 11.8,17.5 12.5,18.2 12.5,19.2 C 12.5,20.2 13.3,21 14.3,21 C 18.8,21 22,17.2 22,12.7 C 22,6.8 17.4,2 11,2 Z M 6.5,10 A 1.2,1.2 0 1 1 6.49,10 Z M 9,6.5 A 1.2,1.2 0 1 1 8.99,6.5 Z M 14,6.2 A 1.2,1.2 0 1 1 13.99,6.2 Z M 16.5,10 A 1.2,1.2 0 1 1 16.49,10 Z</Geometry>
-
-        <Style x:Key="SidebarIconPathStyle" TargetType="Path">
-            <Setter Property="Stroke" Value="#F2F2F2" />
-            <Setter Property="StrokeThickness" Value="2" />
-            <Setter Property="Stretch" Value="Uniform" />
-            <Setter Property="StrokeStartLineCap" Value="Round" />
-            <Setter Property="StrokeEndLineCap" Value="Round" />
-            <Setter Property="StrokeLineJoin" Value="Round" />
-        </Style>
+        <DropShadowEffect x:Key="StrongAccentGlow"
+                          Color="#F09A3F"
+                          BlurRadius="22"
+                          ShadowDepth="0"
+                          Opacity="0.42" />
 
         <Style x:Key="WindowButtonStyleLocal" TargetType="Button">
-            <Setter Property="Width" Value="32" />
-            <Setter Property="Height" Value="32" />
+            <Setter Property="Width" Value="44" />
+            <Setter Property="Height" Value="36" />
             <Setter Property="Padding" Value="0" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Background" Value="#CC14191E" />
-            <Setter Property="Foreground" Value="#B3FFFFFF" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="#141922" />
+            <Setter Property="BorderBrush" Value="#292F3A" />
+            <Setter Property="Foreground" Value="#D9E0EA" />
             <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
-            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontSize" Value="14" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="Chrome"
                                 Background="{TemplateBinding Background}"
-                                CornerRadius="6">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="2">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Chrome" Property="Background" Value="#26FF8C00" />
+                                <Setter TargetName="Chrome" Property="BorderBrush" Value="{StaticResource AccentStrongBrush}" />
+                                <Setter TargetName="Chrome" Property="Background" Value="#1B212B" />
+                                <Setter TargetName="Chrome" Property="Effect" Value="{StaticResource SoftAccentGlow}" />
                                 <Setter Property="Foreground" Value="#FFFFFF" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -114,92 +150,176 @@
         </Style>
 
         <Style x:Key="CloseWindowButtonStyleLocal"
-               BasedOn="{StaticResource WindowButtonStyleLocal}"
-               TargetType="Button">
-            <Setter Property="FontSize" Value="10" />
+               TargetType="Button"
+               BasedOn="{StaticResource WindowButtonStyleLocal}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#FF3B30" />
-                    <Setter Property="Foreground" Value="#FFFFFF" />
+                    <Setter Property="Background" Value="#4C1A12" />
+                    <Setter Property="BorderBrush" Value="#FF9F66" />
+                    <Setter Property="Foreground" Value="#FFF4EB" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="NavButtonStyleLocal" TargetType="Button">
-            <Setter Property="Width" Value="56" />
-            <Setter Property="Height" Value="56" />
-            <Setter Property="Margin" Value="0,0,0,28" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Cursor" Value="Hand" />
+        <Style x:Key="NavGlyphStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe Fluent Icons" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Foreground" Value="#798292" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Background" Value="Transparent" />
+        </Style>
+
+        <Style x:Key="SidebarNavButtonBaseStyle" TargetType="Button">
+            <Setter Property="Width" Value="72" />
+            <Setter Property="Height" Value="72" />
+            <Setter Property="Margin" Value="0,0,0,14" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="Effect" Value="{x:Null}" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#798292" />
+            <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border"
+                        <Border x:Name="Surface"
                                 Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="10">
-                            <Border.Effect>
-                                <Binding Path="Effect" RelativeSource="{RelativeSource TemplatedParent}" />
-                            </Border.Effect>
-                            <ContentPresenter Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center" />
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Surface" Property="Background" Value="#141A22" />
+                                <Setter TargetName="Surface" Property="BorderBrush" Value="#33F09A3F" />
+                                <Setter TargetName="Surface" Property="Effect" Value="{StaticResource SoftAccentGlow}" />
+                                <Setter Property="Foreground" Value="#F6F8FC" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="PrimaryActionButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="34,14" />
+            <Setter Property="Foreground" Value="#FFF7EF" />
+            <Setter Property="FontFamily" Value="{DynamicResource TelemetryFontFamily}" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#55FFD19E" />
+            <Setter Property="Background" Value="#E57D19" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonSurface"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="7">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#F09A3F"
+                                                  BlurRadius="18"
+                                                  ShadowDepth="0"
+                                                  Opacity="0.45" />
+                            </Border.Effect>
+                            <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonSurface" Property="Background" Value="#F69727" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="IndicatorDotStyle" TargetType="Ellipse">
+            <Setter Property="Width" Value="22" />
+            <Setter Property="Height" Value="22" />
+            <Setter Property="Fill" Value="#FFF7F8FB" />
+            <Setter Property="Stroke" Value="#A6FFFFFF" />
+            <Setter Property="StrokeThickness" Value="1" />
+            <Setter Property="Effect" Value="{x:Null}" />
+        </Style>
     </Window.Resources>
 
-    <Border Margin="1"
-            Background="{StaticResource BgBrush}"
-            BorderBrush="{StaticResource RightCardBorderBrush}"
+    <Border Margin="2"
+            Background="{StaticResource ShellBackgroundBrush}"
+            BorderBrush="#4A3329"
             BorderThickness="1"
-            CornerRadius="12">
+            CornerRadius="18">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="80"
+            <DropShadowEffect BlurRadius="40"
                               Direction="270"
-                              Opacity="1"
-                              ShadowDepth="25"
-                              Color="#A6000000" />
+                              Opacity="0.65"
+                              ShadowDepth="16"
+                              Color="#C0000000" />
         </Border.Effect>
         <Grid ClipToBounds="True">
-            <Rectangle RadiusX="12" RadiusY="12" Fill="#070A0E" />
-            <Rectangle RadiusX="12" RadiusY="12" Fill="{StaticResource WindowCoreGlowBrush}" />
-            <Rectangle RadiusX="12" RadiusY="12" Fill="{StaticResource WindowNoiseBrush}" Opacity="0.025" />
-            <Rectangle RadiusX="12" RadiusY="12" Fill="{StaticResource WindowVignetteBrush}" />
+            <Rectangle RadiusX="18" RadiusY="18" Fill="{StaticResource ShellBackgroundBrush}" />
+            <Rectangle RadiusX="18" RadiusY="18" Fill="{StaticResource TopHeatGlowBrush}" VerticalAlignment="Top" Height="180" />
+            <Rectangle RadiusX="18" RadiusY="18" Fill="{StaticResource NoiseBrush}" />
 
-            <Grid>
+            <Grid Margin="6">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="44" />
+                    <RowDefinition Height="56" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="48" />
                 </Grid.RowDefinitions>
 
                 <Border Grid.Row="0"
-                        Background="#0E1319"
-                        BorderBrush="#26FF8C00"
+                        Background="{StaticResource ShellChromeBrush}"
+                        BorderBrush="#33F09A3F"
                         BorderThickness="0,0,0,1"
-                        CornerRadius="12,12,0,0"
+                        CornerRadius="14,14,0,0"
                         core:WindowDragBehavior.IsEnabled="True">
-                    <Grid>
-                        <TextBlock HorizontalAlignment="Center"
+                    <Grid Margin="10,0,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="72" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Width="48"
+                                Height="40"
+                                VerticalAlignment="Center"
+                                Background="#121821"
+                                BorderBrush="#33F09A3F"
+                                BorderThickness="1"
+                                CornerRadius="8">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#F09A3F"
+                                                  BlurRadius="14"
+                                                  ShadowDepth="0"
+                                                  Opacity="0.36" />
+                            </Border.Effect>
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       FontFamily="{DynamicResource TelemetryFontFamily}"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       Text="PX" />
+                        </Border>
+
+                        <TextBlock Grid.Column="1"
+                                   HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Foreground="#FF8C00"
-                                   FontFamily="{DynamicResource UiFontFamily}"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource AccentBrush}"
+                                   FontFamily="{DynamicResource TelemetryFontFamily}"
+                                   FontSize="26"
+                                   FontWeight="Bold"
                                    Text="PROJECT-X" />
 
-                        <StackPanel HorizontalAlignment="Right"
-                                    Margin="0,6,16,6"
+                        <StackPanel Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
                                     Orientation="Horizontal">
                             <Button Command="{Binding MinimizeCommand}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
@@ -219,240 +339,307 @@
                     </Grid>
                 </Border>
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Grid.RowSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="88" />
+                        <ColumnDefinition Width="108" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="280" />
                     </Grid.ColumnDefinitions>
 
                     <Border Grid.Column="0"
-                            BorderBrush="{StaticResource RightCardBorderBrush}"
-                            BorderThickness="0,0,1,0">
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#070C12" Offset="0" />
-                                <GradientStop Color="#060A0F" Offset="1" />
-                            </LinearGradientBrush>
-                        </Border.Background>
+                            Margin="0,10,0,0"
+                            Background="{StaticResource SidebarBrush}"
+                            BorderBrush="#33F09A3F"
+                            BorderThickness="0,1,1,1"
+                            CornerRadius="0,0,12,12">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="56" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <Border Grid.Row="0"
-                                    Background="#060A0F">
-                                <TextBlock HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Foreground="{StaticResource TextBrush}"
-                                           FontFamily="{DynamicResource TelemetryFontFamily}"
-                                           FontSize="18"
-                                           FontWeight="Bold"
-                                           Text="PX" />
-                            </Border>
-
-                            <StackPanel Grid.Row="1"
-                                        Margin="0,60,0,20"
+                            <Border HorizontalAlignment="Right"
+                                    Width="1"
+                                    Margin="0,14,0,14"
+                                    Background="#59F09A3F" />
+                            <StackPanel Margin="0,18,0,20"
                                         HorizontalAlignment="Center">
-                                <Button Command="{Binding ShowDashboardCommand}">
+                                <Button Style="{StaticResource SidebarNavButtonBaseStyle}">
+                                    <TextBlock Style="{StaticResource NavGlyphStyle}" Text="&#xE716;" />
+                                </Button>
+                                <Button Command="{Binding ShowDashboardCommand}"
+                                        Margin="0,10,0,14">
                                     <Button.Style>
-                                        <Style TargetType="Button" BasedOn="{StaticResource NavButtonStyleLocal}">
+                                        <Style TargetType="Button" BasedOn="{StaticResource SidebarNavButtonBaseStyle}">
                                             <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonHoverBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="10"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.18" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Trigger>
                                                 <DataTrigger Binding="{Binding IsDashboardActive}" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonActiveBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="12"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.24" />
-                                                        </Setter.Value>
-                                                    </Setter>
+                                                    <Setter Property="Background" Value="#1CF09A3F" />
+                                                    <Setter Property="BorderBrush" Value="#55F09A3F" />
+                                                    <Setter Property="Foreground" Value="#FFF8F2" />
+                                                    <Setter Property="Effect" Value="{StaticResource StrongAccentGlow}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>
-                                    <Path Data="{StaticResource IconHome}"
-                                          Width="22"
-                                          Height="22"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center">
-                                        <Path.Style>
-                                            <Style TargetType="Path" BasedOn="{StaticResource SidebarIconPathStyle}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsDashboardActive}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Path.Style>
-                                    </Path>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock Style="{StaticResource NavGlyphStyle}"
+                                                   Foreground="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                                   Text="&#xE80F;" />
+                                        <TextBlock Margin="0,6,0,0"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                                   FontFamily="{DynamicResource UiFontFamily}"
+                                                   FontSize="11"
+                                                   Text="Home" />
+                                    </StackPanel>
                                 </Button>
-
-                                <Button Command="{Binding ShowSettingsCommand}">
-                                    <Button.Style>
-                                        <Style TargetType="Button" BasedOn="{StaticResource NavButtonStyleLocal}">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonHoverBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="10"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.18" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Trigger>
-                                                <DataTrigger Binding="{Binding IsSettingsActive}" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonActiveBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="12"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.24" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
-                                    <Path Data="{StaticResource IconSettings}"
-                                          Width="22"
-                                          Height="22"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center">
-                                        <Path.Style>
-                                            <Style TargetType="Path" BasedOn="{StaticResource SidebarIconPathStyle}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsSettingsActive}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Path.Style>
-                                    </Path>
-                                </Button>
-
                                 <Button Command="{Binding ShowThemesCommand}">
                                     <Button.Style>
-                                        <Style TargetType="Button" BasedOn="{StaticResource NavButtonStyleLocal}">
+                                        <Style TargetType="Button" BasedOn="{StaticResource SidebarNavButtonBaseStyle}">
                                             <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonHoverBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="10"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.18" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Trigger>
                                                 <DataTrigger Binding="{Binding IsThemesActive}" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource SidebarButtonActiveBrush}" />
-                                                    <Setter Property="BorderBrush" Value="{StaticResource SidebarButtonAccentBorderBrush}" />
-                                                    <Setter Property="BorderThickness" Value="1" />
-                                                    <Setter Property="Effect">
-                                                        <Setter.Value>
-                                                            <DropShadowEffect Color="#FF8C00"
-                                                                              BlurRadius="12"
-                                                                              ShadowDepth="0"
-                                                                              Opacity="0.24" />
-                                                        </Setter.Value>
-                                                    </Setter>
+                                                    <Setter Property="Background" Value="#1CF09A3F" />
+                                                    <Setter Property="BorderBrush" Value="#55F09A3F" />
+                                                    <Setter Property="Foreground" Value="#FFF8F2" />
+                                                    <Setter Property="Effect" Value="{StaticResource StrongAccentGlow}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Button.Style>
-                                    <Path Data="{StaticResource IconPalette}"
-                                          Width="22"
-                                          Height="22"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center">
-                                        <Path.Style>
-                                            <Style TargetType="Path" BasedOn="{StaticResource SidebarIconPathStyle}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsThemesActive}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=IsMouseOver}" Value="True">
-                                                        <Setter Property="Stroke" Value="#FFFFFF" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Path.Style>
-                                    </Path>
+                                    <TextBlock Style="{StaticResource NavGlyphStyle}"
+                                               Foreground="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                               Text="&#xECA5;" />
+                                </Button>
+                                <Button Command="{Binding ShowSettingsCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource SidebarNavButtonBaseStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSettingsActive}" Value="True">
+                                                    <Setter Property="Background" Value="#1CF09A3F" />
+                                                    <Setter Property="BorderBrush" Value="#55F09A3F" />
+                                                    <Setter Property="Foreground" Value="#FFF8F2" />
+                                                    <Setter Property="Effect" Value="{StaticResource StrongAccentGlow}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <TextBlock Style="{StaticResource NavGlyphStyle}"
+                                               Foreground="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                                               Text="&#xE713;" />
+                                </Button>
+                                <Button Style="{StaticResource SidebarNavButtonBaseStyle}">
+                                    <TextBlock Style="{StaticResource NavGlyphStyle}" Text="&#xE8BD;" />
+                                </Button>
+                                <Button Style="{StaticResource SidebarNavButtonBaseStyle}">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               Foreground="#798292"
+                                               FontFamily="{DynamicResource TelemetryFontFamily}"
+                                               FontSize="25"
+                                               Text="@" />
                                 </Button>
                             </StackPanel>
                         </Grid>
                     </Border>
 
                     <Border Grid.Column="1"
-                            Margin="16"
-                            Background="{StaticResource PanelMidBrush}"
-                            BorderBrush="{StaticResource RightCardBorderBrush}"
+                            Margin="12,10,0,0"
+                            Background="{StaticResource PanelBrushLocal}"
+                            BorderBrush="#2B3038"
                             BorderThickness="1"
-                            CornerRadius="12">
-                        <ContentControl Margin="16" Content="{Binding CurrentContent}" />
+                            CornerRadius="10,10,0,0">
+                        <Grid>
+                            <Rectangle Fill="{StaticResource CenterWarmGlowBrush}" />
+                            <Rectangle Fill="{StaticResource NoiseBrush}" />
+                            <Border Margin="1"
+                                    BorderBrush="#1CF09A3F"
+                                    BorderThickness="1"
+                                    CornerRadius="9,9,0,0" />
+
+                            <Grid x:Name="DashboardScene">
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsDashboardActive}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="52" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="248" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="18,12,18,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="220" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Viewbox Grid.Column="0"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
+                                             Stretch="Uniform"
+                                             StretchDirection="DownOnly">
+                                        <Canvas Width="870" Height="494">
+                                            <Ellipse Width="620"
+                                                     Height="180"
+                                                     Canvas.Left="132"
+                                                     Canvas.Top="318"
+                                                     Fill="{StaticResource CenterWarmGlowBrush}" />
+
+                                            <Grid Width="870"
+                                                  Height="494"
+                                                  ClipToBounds="True">
+                                                <Image Width="870"
+                                                       Height="494"
+                                                       HorizontalAlignment="Left"
+                                                       VerticalAlignment="Top"
+                                                       Source="{StaticResource DashboardFrameBitmap}"
+                                                       RenderOptions.BitmapScalingMode="HighQuality"
+                                                       SnapsToDevicePixels="True"
+                                                       UseLayoutRounding="True"
+                                                       Stretch="Fill">
+                                                    <Image.CacheMode>
+                                                        <BitmapCache RenderAtScale="1.5" />
+                                                    </Image.CacheMode>
+                                                </Image>
+                                            </Grid>
+
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="186" Canvas.Top="24" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="226" Canvas.Top="23" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="266" Canvas.Top="21" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="307" Canvas.Top="20" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="348" Canvas.Top="20" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="389" Canvas.Top="19" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="430" Canvas.Top="19" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="471" Canvas.Top="19" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="512" Canvas.Top="20" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="553" Canvas.Top="21" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="594" Canvas.Top="22" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="634" Canvas.Top="24" />
+
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="42" Canvas.Top="71" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="42" Canvas.Top="108" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="42" Canvas.Top="144" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="804" Canvas.Top="71" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="804" Canvas.Top="108" />
+                                            <Ellipse Style="{StaticResource IndicatorDotStyle}" Canvas.Left="804" Canvas.Top="144" />
+
+                                            <Border Width="650"
+                                                    Height="320"
+                                                    Canvas.Left="108"
+                                                    Canvas.Top="76"
+                                                    Background="#020304"
+                                                    BorderBrush="#000000"
+                                                    BorderThickness="0"
+                                                    CornerRadius="8"
+                                                    ClipToBounds="True">
+                                                <Grid ClipToBounds="True">
+                                                    <Rectangle Fill="#020304" />
+                                                    <ContentControl HorizontalContentAlignment="Stretch"
+                                                                    VerticalContentAlignment="Stretch"
+                                                                    Content="{Binding CurrentContent}" />
+                                                </Grid>
+                                            </Border>
+                                        </Canvas>
+                                    </Viewbox>
+
+                                    <StackPanel Grid.Column="1"
+                                                Width="196"
+                                                Margin="24,70,0,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top">
+                                        <TextBlock Foreground="{StaticResource AccentBrush}"
+                                                   FontFamily="{DynamicResource TelemetryFontFamily}"
+                                                   FontSize="28"
+                                                   FontWeight="Bold"
+                                                   Text="CONNECTED" />
+                                        <Border Margin="0,16,0,0"
+                                                BorderBrush="#1FF09A3F"
+                                                BorderThickness="0,1,0,0" />
+                                        <StackPanel Margin="0,18,0,0">
+                                            <TextBlock Foreground="{StaticResource TextMutedBrush}"
+                                                       FontFamily="{DynamicResource UiFontFamily}"
+                                                       FontSize="13"
+                                                       Text="Source:" />
+                                            <TextBlock Margin="0,4,0,0"
+                                                       Foreground="{StaticResource AccentBrush}"
+                                                       FontFamily="{DynamicResource TelemetryFontFamily}"
+                                                       FontSize="18"
+                                                       FontWeight="Bold"
+                                                       Text="NATIVE" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,22,0,0">
+                                            <TextBlock Foreground="{StaticResource TextMainBrush}"
+                                                       FontFamily="{DynamicResource UiFontFamily}"
+                                                       FontSize="15"
+                                                       Text="DDU-1 - COM1 - FW 1.0" />
+                                            <Border Margin="0,12,0,12"
+                                                    BorderBrush="#16222D"
+                                                    BorderThickness="0,1,0,0" />
+                                            <TextBlock Foreground="{StaticResource TextMainBrush}"
+                                                       FontFamily="{DynamicResource UiFontFamily}"
+                                                       FontSize="15"
+                                                       Text="OK - #E8EFFF" />
+                                        </StackPanel>
+                                        <Button Margin="0,28,0,0"
+                                                HorizontalAlignment="Stretch"
+                                                Content="START TEST"
+                                                Style="{StaticResource PrimaryActionButtonStyle}" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <Border Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Background="#0D1117"
+                                        BorderBrush="#22F09A3F"
+                                        BorderThickness="0,1,0,0">
+                                    <Grid>
+                                        <Rectangle Height="34"
+                                                   VerticalAlignment="Center"
+                                                   Fill="{StaticResource CenterWarmGlowBrush}"
+                                                   Opacity="0.55" />
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                            <Ellipse Width="8" Height="8" Fill="{StaticResource AccentBrush}" />
+                                            <TextBlock Margin="10,0,18,0" Foreground="#B8BEC8" FontFamily="{DynamicResource UiFontFamily}" FontSize="12" Text="SYSTEM OK" />
+                                            <TextBlock Foreground="{StaticResource AccentBrush}" Text="*" />
+                                            <TextBlock Margin="18,0,18,0" Foreground="#B8BEC8" FontFamily="{DynamicResource UiFontFamily}" FontSize="12" Text="DEVICE SYNC" />
+                                            <TextBlock Foreground="{StaticResource AccentBrush}" Text="*" />
+                                            <TextBlock Margin="18,0,0,0" Foreground="#B8BEC8" FontFamily="{DynamicResource UiFontFamily}" FontSize="12" Text="TELEMETRY ACTIVE" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+
+                            <Grid x:Name="SectionScene">
+                                <Grid.Style>
+                                    <Style TargetType="Grid">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsDashboardActive}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="52" />
+                                </Grid.RowDefinitions>
+                                <ContentControl Margin="22,18,22,16"
+                                                HorizontalContentAlignment="Stretch"
+                                                VerticalContentAlignment="Stretch"
+                                                Content="{Binding CurrentContent}" />
+                                <Border Grid.Row="1"
+                                        Background="#0D1117"
+                                        BorderBrush="#22F09A3F"
+                                        BorderThickness="0,1,0,0">
+                                    <Grid />
+                                </Border>
+                            </Grid>
+                        </Grid>
                     </Border>
-
-                    <StackPanel Grid.Column="2" Margin="0,16,16,16">
-                        <Border Style="{StaticResource CardBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Status" />
-                                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Game" />
-                                <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding DashboardViewModel.GameStatus}" />
-                            </StackPanel>
-                        </Border>
-
-                        <Border Margin="0,16,0,0" Style="{StaticResource CardBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Device" />
-                                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Name" />
-                                <TextBlock Style="{StaticResource ValueTextStyle}" FontSize="18" Text="{Binding DashboardViewModel.DeviceName}" TextWrapping="Wrap" />
-                                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Bridge" />
-                                <TextBlock Style="{StaticResource LabelTextStyle}" Text="{Binding DashboardViewModel.DeviceInfo}" TextWrapping="Wrap" />
-                            </StackPanel>
-                        </Border>
-
-                        <Border Margin="0,16,0,0" Style="{StaticResource CardBorderStyle}">
-                            <StackPanel>
-                                <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Frame" />
-                                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Target" />
-                                <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding DashboardViewModel.FrameRate}" />
-                            </StackPanel>
-                        </Border>
-                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>

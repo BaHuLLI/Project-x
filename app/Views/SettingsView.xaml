@@ -7,21 +7,70 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Border Margin="0,0,12,0" Style="{StaticResource CardBorderStyle}">
+        <Border Margin="0,0,14,0"
+                Padding="22"
+                Background="#181D24"
+                BorderBrush="#22313D"
+                BorderThickness="1"
+                CornerRadius="14">
             <StackPanel>
-                <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Window Memory" />
-                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Saved Bounds" />
-                <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding WindowBounds}" TextWrapping="Wrap" />
+                <TextBlock Foreground="#F2F4F7"
+                           FontFamily="{DynamicResource UiFontFamily}"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Text="Window Memory" />
+                <TextBlock Margin="0,20,0,0"
+                           Foreground="#818896"
+                           FontFamily="{DynamicResource UiFontFamily}"
+                           FontSize="13"
+                           Text="Saved Bounds" />
+                <TextBlock Margin="0,8,0,0"
+                           Foreground="#F2F4F7"
+                           FontFamily="{DynamicResource TelemetryFontFamily}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding WindowBounds}"
+                           TextWrapping="Wrap" />
             </StackPanel>
         </Border>
 
-        <Border Grid.Column="1" Margin="12,0,0,0" Style="{StaticResource CardBorderStyle}">
+        <Border Grid.Column="1"
+                Margin="14,0,0,0"
+                Padding="22"
+                Background="#181D24"
+                BorderBrush="#22313D"
+                BorderThickness="1"
+                CornerRadius="14">
             <StackPanel>
-                <TextBlock Style="{StaticResource SectionTitleStyle}" Text="External Assets" />
-                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Rajdhani-Bold.ttf" />
-                <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding RajdhaniAsset}" TextWrapping="Wrap" />
-                <TextBlock Margin="0,14,0,0" Style="{StaticResource LabelTextStyle}" Text="Inter-Regular.ttf" />
-                <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding InterAsset}" TextWrapping="Wrap" />
+                <TextBlock Foreground="#F2F4F7"
+                           FontFamily="{DynamicResource UiFontFamily}"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Text="External Assets" />
+                <TextBlock Margin="0,20,0,0"
+                           Foreground="#818896"
+                           FontFamily="{DynamicResource UiFontFamily}"
+                           FontSize="13"
+                           Text="Rajdhani-Bold.ttf" />
+                <TextBlock Margin="0,8,0,0"
+                           Foreground="#F2F4F7"
+                           FontFamily="{DynamicResource TelemetryFontFamily}"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Text="{Binding RajdhaniAsset}"
+                           TextWrapping="Wrap" />
+                <TextBlock Margin="0,20,0,0"
+                           Foreground="#818896"
+                           FontFamily="{DynamicResource UiFontFamily}"
+                           FontSize="13"
+                           Text="Inter-Regular.ttf" />
+                <TextBlock Margin="0,8,0,0"
+                           Foreground="#F2F4F7"
+                           FontFamily="{DynamicResource TelemetryFontFamily}"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Text="{Binding InterAsset}"
+                           TextWrapping="Wrap" />
             </StackPanel>
         </Border>
     </Grid>

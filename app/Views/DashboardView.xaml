@@ -1,49 +1,23 @@
 <UserControl x:Class="ProjectXProDash.Views.DashboardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:renderers="clr-namespace:ProjectXProDash.Renderers">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <StackPanel>
-            <TextBlock Style="{StaticResource SectionTitleStyle}" Text="Dashboard" />
-            <TextBlock Margin="0,6,0,0"
-                       Style="{StaticResource LabelTextStyle}"
-                       Text="Empty baseline canvas. Visual system reset." />
-        </StackPanel>
-
-        <Border Grid.Row="1"
-                Margin="0,16,0,16"
-                Background="#FF000000"
-                BorderBrush="{StaticResource RightCardBorderBrush}"
-                BorderThickness="1"
-                CornerRadius="10">
-            <renderers:MainCanvasRenderer Margin="12" />
-        </Border>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Border Margin="0,0,8,0" Style="{StaticResource CardBorderStyle}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource LabelTextStyle}" Text="Speed" />
-                    <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding Speed}" />
-                </StackPanel>
-            </Border>
-
-            <Border Grid.Column="1" Margin="8,0,0,0" Style="{StaticResource CardBorderStyle}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource LabelTextStyle}" Text="Latency" />
-                    <TextBlock Style="{StaticResource ValueTextStyle}" Text="{Binding Latency}" />
-                </StackPanel>
-            </Border>
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="Transparent">
+        <Grid>
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="#FF9B2D"
+                       FontFamily="{DynamicResource TelemetryFontFamily}"
+                       FontSize="38"
+                       FontStyle="Italic"
+                       FontWeight="Bold"
+                       Text="WAITING FOR THEME">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#FF8C00"
+                                      BlurRadius="22"
+                                      ShadowDepth="0"
+                                      Opacity="0.8" />
+                </TextBlock.Effect>
+            </TextBlock>
         </Grid>
     </Grid>
 </UserControl>
